@@ -72,7 +72,7 @@ def foreachBatchFunction4(microBatchOutputDF, batchId):
 
 sr_df0 = (sr_df.writeStream
               .format("csv")
-              .option("checkpointLocation", "s3://jenny-etl-test/glue_split_etl/checkpoint/sr_df")
+              .option("checkpointLocation", "s3://{/checkpoint/sr_df}")
               .foreachBatch(foreachBatchFunction)
               .trigger(processingTime='5 second')
               .outputMode("update")
@@ -80,7 +80,7 @@ sr_df0 = (sr_df.writeStream
               
 ss_df0 = (ss_df.writeStream
               .format("csv")
-              .option("checkpointLocation", "s3://jenny-etl-test/glue_split_etl/checkpoint/ss_df")
+              .option("checkpointLocation", "s3://{/checkpoint/sc_df}")
               .foreachBatch(foreachBatchFunction2)
               .trigger(processingTime='5 second')
               .outputMode("update") 
@@ -88,7 +88,7 @@ ss_df0 = (ss_df.writeStream
 
 cr_df0 = (cr_df.writeStream
               .format("csv")
-              .option("checkpointLocation", "s3://jenny-etl-test/glue_split_etl/checkpoint/cr_df")
+              .option("checkpointLocation", "s3://{/checkpoint/cr_df}")
               .foreachBatch(foreachBatchFunction3)
               .trigger(processingTime='5 second')
               .outputMode("update")
@@ -96,7 +96,7 @@ cr_df0 = (cr_df.writeStream
               
 cs_df0 = (cs_df.writeStream
               .format("csv")
-              .option("checkpointLocation", "s3://jenny-etl-test/glue_split_etl/checkpoint/cs_df")
+              .option("checkpointLocation", "s3://{/checkpoint/cs_df}")
               .foreachBatch(foreachBatchFunction4)
               .trigger(processingTime='5 second')
               .outputMode("update")
