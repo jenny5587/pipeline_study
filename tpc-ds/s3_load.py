@@ -38,7 +38,7 @@ def foreachBatchFunction(microBatchOutputDF, batchId):
 
 (df.writeStream
               .format("parquet")
-              .option("checkpointLocation", "s3://jenny-etl-test/glue-streaming/checkpoint")
+              .option("checkpointLocation", "{checkpoint-s3uri}")
               .foreachBatch(foreachBatchFunction)
               .trigger(processingTime='5 second')
               .outputMode("update")
